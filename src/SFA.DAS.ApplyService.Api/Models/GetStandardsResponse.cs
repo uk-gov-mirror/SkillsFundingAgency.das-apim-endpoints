@@ -11,12 +11,14 @@ namespace SFA.DAS.ApplyService.Api.Models
     public class GetStandardsResponseItem
     {
         public int Id { get; set; }
+        public string Title { get; set; }
 
         public static implicit operator GetStandardsResponseItem(GetStandardsListItem source)
         {
             return new GetStandardsResponseItem
             {
-                Id = source.Id
+                Id = source.Id,
+                Title = source.Title
             };
         }
     }
