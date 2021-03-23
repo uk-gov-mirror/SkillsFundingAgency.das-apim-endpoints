@@ -32,12 +32,18 @@ namespace SFA.DAS.ApprenticeCommitments.Application.Services
             var apprenticeship = await _client.Get<ApprenticeshipResponse>(
                 new GetApprenticeshipDetailsRequest(apprenticeshipId));
 
+            if (apprenticeship == null)
+            {
+                throw new HttpRequestContentException(
+                    $"Apprenticeship Id {apprenticeshipId} was not found",
+                    HttpStatusCode.BadRequest);
+            }
+
             if (apprenticeship?.EmployerAccountId != accountId)
             {
                 throw new HttpRequestContentException(
                     $"Employer Account {accountId} does not have access to apprenticeship Id {apprenticeshipId}",
-                    System.Net.HttpStatusCode.BadRequest,
-                    "");
+                    HttpStatusCode.BadRequest);
             }
 
             return apprenticeship;
