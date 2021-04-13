@@ -1,7 +1,7 @@
 jobs:
 - job: CodeBuild
   pool:
-    name: DAS - Continuous Integration
+    name: DAS - Continuous Integration Beta
   variables:
   - group: Prod Management Resources
   - name: buildConfiguration
@@ -43,7 +43,7 @@ jobs:
       publishWebProjects: false
       projects: 'src/SFA.DAS.EmployerIncentives.Api/SFA.DAS.EmployerIncentives.Api.csproj'
       arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/publish --no-restore --no-build'
-    
+
   - task: DotNetCoreCLI@2
     displayName: 'Publish Find Epao Api'
     inputs:
@@ -75,7 +75,7 @@ jobs:
       publishWebProjects: false
       projects: 'src/SFA.DAS.Approvals.Api/SFA.DAS.Approvals.Api.csproj'
       arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/publish --no-restore --no-build'
-      
+
   - task: DotNetCoreCLI@2
     displayName: 'Publish Manage Apprenticeships Api'
     inputs:
@@ -107,7 +107,7 @@ jobs:
       publishWebProjects: false
       projects: 'src/SFA.DAS.Assessors.Api/SFA.DAS.Assessors.Api.csproj'
       arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/publish --no-restore --no-build'
-      
+
   - task: DotNetCoreCLI@2
     displayName: 'Publish Apprentice Commitments Api'
     inputs:
@@ -122,13 +122,13 @@ jobs:
       command: publish
       publishWebProjects: false
       projects: 'src/SFA.DAS.EmployerDemand.Api/SFA.DAS.EmployerDemand.Api.csproj'
-      arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/publish --no-restore --no-build'      
+      arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/publish --no-restore --no-build'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
-    inputs:      
+    inputs:
       Contents: |
-        azure/**          
+        azure/**
       TargetFolder: '$(build.artifactstagingdirectory)/publish'
       OverWrite: true
 
