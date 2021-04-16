@@ -1513,7 +1513,7 @@ stages:
   condition: and(succeeded(), eq(variables['Build.Reason'], 'Manual'))
   displayName: Deploy to DEMO
   pool:
-    name: DAS - Continuous Deployment Beta
+    name: DAS - Continuous Deployment Agents
   variables:
   - group: DevTest Management Resources
   - group: DEMO DevTest Shared Resources
