@@ -1,7 +1,7 @@
 jobs:
 - job: CodeBuild
   pool:
-    name: DAS - Continuous Integration Beta
+    name: DAS - Continuous Integration
   variables:
   - group: Prod Management Resources
   - name: buildConfiguration
